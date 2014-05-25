@@ -55,7 +55,8 @@ function custom_project_posttypes(){
         'has_archive'        => true,
         'hierarchical'       => false,
         'menu_position'      => 5,
-        'supports'           => array( 'title', 'editor', 'excerpt', 'thumbnail' )
+        'supports'           => array( 'title', 'editor', 'excerpt', 'thumbnail' ),
+        'taxonomies'         => array( 'post_tag')
     );
 
   register_post_type ('Projects', $args);
@@ -79,3 +80,5 @@ function my_rewrite_flush() {
     flush_rewrite_rules();
 }
 register_activation_hook( __FILE__, 'my_rewrite_flush' );
+
+
