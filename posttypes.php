@@ -26,8 +26,10 @@
 function custom_project_posttypes(){
 
   $args = array(
-    'public' => true,
-    'label' => 'Projects',
+    'public'             => true,
+    'label'              => 'Projects',
+    'menu_position'      => 5,
+
 
   );
   register_post_type ('Projects', $args);
@@ -35,3 +37,19 @@ function custom_project_posttypes(){
 }
 
 add_action( 'init', 'custom_project_posttypes');
+
+
+//Flushing Rewrite
+
+function my_rewrite_flush() {
+    // First, we "add" the custom post type via the above written function.
+    // Note: "add" is written with quotes, as CPTs don't get added to the DB,
+    // They are only referenced in the post_type column with a post entry,
+    // when you add a post of this CPT.
+    custom_project_posttype();
+
+    // ATTENTION: This is *only* done during plugin activation hook in this example!
+    // You should *NEVER EVER* do this on every page load!!
+    flush_rewrite_rules();
+}
+register_activation_hook( __FILE__, 'my_rewrite_flush' );
