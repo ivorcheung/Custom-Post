@@ -22,3 +22,16 @@
     along with this program; if not, write to the Free Software
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
+
+function custom_project_posttypes(){
+
+  $args = array(
+    'public' => true,
+    'label' => 'Projects',
+
+  );
+  register_post_type ('Projects', $args);
+
+}
+
+add_action( 'init', 'custom_project_posttypes');
